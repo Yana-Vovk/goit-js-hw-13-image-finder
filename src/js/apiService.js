@@ -8,9 +8,13 @@ export default class ApiService {
     }
    
     async fetchImg() {
-        const response = await fetch(`${BASE_URL}/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`);
+        try {const response = await fetch(`${BASE_URL}/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`);
         const newResponse = await response.json();
-        return newResponse.hits;
+            return newResponse.hits;
+        } catch (err) {
+            throw err;
+        }
+        
     }
     
     incrementPage(){
